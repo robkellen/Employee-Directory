@@ -5,7 +5,7 @@ function Header() {
     <div className="header">
       <h1>Employee Directory</h1>
       <p>
-        Click on each column title to sort, or use the search box to filter your
+        Sort the order of employee name by clicking on the arrow, or use the search box to filter your
         results.
       </p>
     </div>

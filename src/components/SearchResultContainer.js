@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Header from "./Header";
 import Container from "./Container";
+import SearchForm from "./SearchForm";
 
 class SearchResultContainer extends Component {
   state = {
@@ -59,6 +60,7 @@ class SearchResultContainer extends Component {
     return (
       <Container>
         <Header />
+        <SearchForm />
       </Container>
     );
   }

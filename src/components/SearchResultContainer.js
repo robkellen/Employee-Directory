@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import Header from "./Header";
+import Container from "./Container";
 
 class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
-    filterResults: []
+    filterResults: [],
   };
 
   // When this component mounts, search for all employees
@@ -15,63 +17,49 @@ class SearchResultContainer extends Component {
 
   findEmployees = () => {
     API.getUsers()
-    .then((res) => {
-      console.log(res)
-    })
-      // .then(res => this.setState({ result: res.data }))
-      // .catch(err => console.log(err));
+      .then((res) => {
+        this.setState({
+          results: res.data.results,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+  //query returns all employees who may match search based on values of the various info below
+  filterEmployees = (query) => {
+    const filtered = this.state.results.filter(
+      (emp) =>
+        emp.cell.includes(query) ||
+        emp.email.includes(query) ||
+        emp.name.first.includes(query) ||
+        emp.name.last.includes(query) ||
+        emp.phone.includes(query)
+    );
+    //set this.state.results to filtered array
+    this.state.results({
+      filterResults: filtered,
+    });
+    console.log(this.state.filterResults);
   };
 
   handleInputChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
-  handleFormSubmit = e => {
+  handleFormSubmit = (e) => {
     e.preventDefault();
     this.findEmployees(this.state.search);
   };
 
   render() {
     return (
-      <>
-      </>
-
-
-      // <Container>
-      //   <Row>
-      //     <Col size="md-8">
-      //       <Card
-      //         heading={this.state.result.Title || "Search for a Movie to Begin"}
-      //       >
-      //         {this.state.result.Title ? (
-      //           <MovieDetail
-      //             title={this.state.result.Title}
-      //             src={this.state.result.Poster}
-      //             director={this.state.result.Director}
-      //             genre={this.state.result.Genre}
-      //             released={this.state.result.Released}
-      //           />
-      //         ) : (
-      //           <h3>No Results to Display</h3>
-      //         )}
-      //       </Card>
-      //     </Col>
-      //     <Col size="md-4">
-      //       <Card heading="Search">
-      //         <SearchForm
-      //           value={this.state.search}
-      //           handleInputChange={this.handleInputChange}
-      //           handleFormSubmit={this.handleFormSubmit}
-      //         />
-      //       </Card>
-      //     </Col>
-      //   </Row>
-      // </Container>
+      <Container>
+        <Header />
+      </Container>
     );
   }
 }

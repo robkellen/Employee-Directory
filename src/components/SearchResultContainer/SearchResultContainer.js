@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import API from "../utils/API";
-import Header from "./Header/Header";
-import Container from "./Container/Container";
-import SearchForm from "./SearchForm/SearchForm";
+import API from "../../utils/API";
+import Header from "../Header/Header";
+import Container from "../Container/Container";
+import SearchForm from "../SearchForm/SearchForm";
 
 class SearchResultContainer extends Component {
   state = {
@@ -22,6 +22,7 @@ class SearchResultContainer extends Component {
         this.setState({
           results: res.data.results,
         });
+        console.log(res)
       })
       .catch((err) => console.log(err));
   };
@@ -61,6 +62,7 @@ class SearchResultContainer extends Component {
       <Container>
         <Header />
         <SearchForm />
+        
         
       </Container>
     );

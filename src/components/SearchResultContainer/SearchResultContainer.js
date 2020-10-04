@@ -7,7 +7,7 @@ import Col from "../Column/Column";
 import SearchForm from "../SearchForm/SearchForm";
 import DataTableHeader from "../DataTableHeader/DataTableHeader";
 
-// import DataTable from "../DataTable/DataTable"
+import DataTable from "../DataTable/DataTable";
 
 class SearchResultContainer extends Component {
   state = {
@@ -40,7 +40,7 @@ class SearchResultContainer extends Component {
         emp.name.last.includes(query)
     );
     //set this.state.results to filtered array
-    this.state.results({
+    this.setState.results({
       filterResults: filtered,
     });
     console.log(this.state.filterResults);
@@ -61,19 +61,35 @@ class SearchResultContainer extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <Container>
         <Header />
-        <SearchForm />
+        <SearchForm 
+        search={this.state.search}
+        handleFormSubmit={this.handleFormSubmit}
+        handleInputChange={this.handleInputChange}
+        />
         <Row>
           <Col size="md">
             <table className="table">
               <DataTableHeader />
+              <DataTable 
+                results={this.state.results}
+                  // (emp) =>
+                  // emp.cell.includes(this.state) ||
+                  // emp.email.includes(this.state) ||
+                  // emp.name.first.includes(this.state) ||
+                  // emp.name.last.includes(this.state) ||
+                  // emp.phone.includes(this.state)
+                  
+              />
             </table>
           </Col>
         </Row>
       </Container>
     );
+    
   }
 }
 

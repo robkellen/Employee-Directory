@@ -1,15 +1,16 @@
 import React from "react";
 
 function DataTableHeader(props) {
-  return (
+  return (  
+    
     <thead>
       <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Mobile</th>
-        <th>Email</th>
-        <th>Hire Date</th>
-        <th>Date of Birth</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Email</th>
+        <th scope="col">Hire Date</th>
+        <th scope="col">Date of Birth</th>
       </tr>
     </thead>
   );

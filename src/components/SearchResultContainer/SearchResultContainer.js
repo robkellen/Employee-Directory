@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Header from "../Header/Header";
 import Container from "../Container/Container";
+import Row from "../Row/Row";
+import Col from "../Column/Column";
 import SearchForm from "../SearchForm/SearchForm";
+import DataTableHeader from "../DataTableHeader/DataTableHeader";
+
+// import DataTable from "../DataTable/DataTable"
 
 class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
-    filterResults: [],
   };
 
   // When this component mounts, search for all employees
@@ -22,7 +26,7 @@ class SearchResultContainer extends Component {
         this.setState({
           results: res.data.results,
         });
-        console.log(res)
+        console.log(this.state.results);
       })
       .catch((err) => console.log(err));
   };
@@ -33,8 +37,7 @@ class SearchResultContainer extends Component {
         emp.cell.includes(query) ||
         emp.email.includes(query) ||
         emp.name.first.includes(query) ||
-        emp.name.last.includes(query) ||
-        emp.phone.includes(query)
+        emp.name.last.includes(query)
     );
     //set this.state.results to filtered array
     this.state.results({
@@ -62,8 +65,13 @@ class SearchResultContainer extends Component {
       <Container>
         <Header />
         <SearchForm />
-        
-        
+        <Row>
+          <Col size="md">
+            <table className="table">
+              <DataTableHeader />
+            </table>
+          </Col>
+        </Row>
       </Container>
     );
   }

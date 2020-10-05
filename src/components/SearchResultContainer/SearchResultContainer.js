@@ -43,7 +43,7 @@ class SearchResultContainer extends Component {
     this.setState.results({
       filterResults: filtered,
     });
-    console.log(this.state.filterResults);
+    // console.log(this.state.filterResults);
   };
 
   handleInputChange = (e) => {
@@ -61,7 +61,7 @@ class SearchResultContainer extends Component {
   };
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Container>
         <Header />
@@ -72,7 +72,7 @@ class SearchResultContainer extends Component {
         />
         <Row>
           <Col size="md">
-            <table className="table">
+            <table className="table table-bordered table-striped">
               <DataTableHeader />
               <DataTable 
                 results={this.state.results}

@@ -5,9 +5,9 @@ function DataTable(props) {
   return (
     <tbody>
       {props.results.map((emp) => (
-        <tr>
+        <tr key={emp.id.value}>
           <td>
-            <img src={emp.picture.small} id="empImg" alt="employeeImage" />
+            <img src={emp.picture.medium} id="empImg" alt="employeeImage" />
           </td>
           <td>
             {emp.name.first} {emp.name.last}
@@ -22,6 +22,7 @@ function DataTable(props) {
           <td>{emp.registered.date}</td>
         </tr>
       ))}
+      
     </tbody>
   );
 }

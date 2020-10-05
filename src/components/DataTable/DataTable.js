@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 
 function DataTable(props) {
   //Table to display employee information
@@ -18,11 +19,14 @@ function DataTable(props) {
           <td>
             <p>{emp.email}</p>
           </td>
-          <td>{emp.dob.date}</td>
-          <td>{emp.registered.date}</td>
+          <td>
+            <Moment format="MMMM DD, YYYY">{emp.dob.date}</Moment>
+          </td>
+          <td>
+            <Moment format="MMMM DD, YYYY">{emp.registered.date}</Moment>
+          </td>
         </tr>
       ))}
-      
     </tbody>
   );
 }

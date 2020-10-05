@@ -74,16 +74,24 @@ class SearchResultContainer extends Component {
           <Col size="md">
             <table className="table table-bordered table-striped">
               <DataTableHeader />
-              <DataTable 
-                results={this.state.results}
-                  // (emp) =>
-                  // emp.cell.includes(this.state) ||
-                  // emp.email.includes(this.state) ||
-                  // emp.name.first.includes(this.state) ||
-                  // emp.name.last.includes(this.state) ||
-                  // emp.phone.includes(this.state)
+              {this.state.results ? (
+
+                <DataTable 
+                results={this.state.results.filter((emp) => 
+
+                  emp.cell.includes(this.state.search) ||
+                  emp.email.includes(this.state.search) ||
+                  emp.name.first.includes(this.state.search) ||
+                  emp.name.last.includes(this.state.search) ||
+                  emp.phone.includes(this.state.search)
                   
-              />
+                )}
+                />
+              ) : (
+                <h2>404 Not Found!</h2>
+              )}
+                  
+              
             </table>
           </Col>
         </Row>

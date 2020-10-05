@@ -9,8 +9,8 @@ function DataTableHeader(props) {
         <th scope="col">Name</th>
         <th scope="col">Mobile</th>
         <th scope="col">Email</th>
-        <th scope="col">Hire Date</th>
         <th scope="col">Date of Birth</th>
+        <th scope="col">Hire Date</th>
       </tr>
     </thead>
   );

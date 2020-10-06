@@ -4,6 +4,7 @@ import Moment from "react-moment";
 function DataTable(props) {
   //Table to display employee information
   return (
+    
     <tbody>
       {props.results.map((emp) => (
         <tr key={emp.id.value}>
@@ -28,6 +29,7 @@ function DataTable(props) {
         </tr>
       ))}
     </tbody>
+    
   );
 }
 

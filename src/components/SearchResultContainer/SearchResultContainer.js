@@ -5,6 +5,7 @@ import Container from "../Container/Container";
 import Row from "../Row/Row";
 import Col from "../Column/Column";
 import SearchForm from "../SearchForm/SearchForm";
+import "./SearchResultContainer.css";
 
 import DataTable from "../DataTable/DataTable";
 
@@ -14,7 +15,7 @@ class SearchResultContainer extends Component {
     results: [],
     sortResult: [],
     alphabetized: true,
-    sortIcon: "",
+    sortIcon: "↓",
   };
 
   // When this component mounts, search for all employees
@@ -28,7 +29,6 @@ class SearchResultContainer extends Component {
         this.setState({
           results: res.data.results,
         });
-        // console.log(this.state.results);
       })
       .catch((err) => console.log(err));
   };
@@ -50,7 +50,7 @@ class SearchResultContainer extends Component {
   alphaSort = () => {
     let sortedEmps = [];
     if (this.state.alphabetized) {
-      this.setState({ sortIcon: "↓" });
+      this.setState({ sortIcon: "↑", alphabetized: false });
       sortedEmps = this.state.results.sort((a, z) => {
         let aName = a.name.first.toLowerCase();
         let zName = z.name.first.toLowerCase();
@@ -59,7 +59,7 @@ class SearchResultContainer extends Component {
         return 0;
       });
     } else {
-      this.setState({ sortIcon: "↑" });
+      this.setState({ sortIcon: "↓", alphabetized: true });
       sortedEmps = this.state.results.sort((a, z) => {
         let aName = a.name.first.toLowerCase();
         let zName = z.name.first.toLowerCase();
@@ -69,13 +69,11 @@ class SearchResultContainer extends Component {
       });
     }
     this.setState({
-      alphebetized: !this.state.alphabetized,
       sortResults: sortedEmps,
     });
   };
 
   render() {
-    // console.log(this.state)
     return (
       <Container>
         <Header />
@@ -90,9 +88,9 @@ class SearchResultContainer extends Component {
               <thead className="table-dark">
                 <tr>
                   <th scope="col">Image</th>
-                  <th scope="col" >
+                  <th scope="col">
                     <span id="name" onClick={this.alphaSort}>
-                      Name {this.state.sortIcon}
+                      Name <span id="sort-icon">{this.state.sortIcon}</span>
                     </span>
                   </th>
                   <th scope="col">Mobile</th>
